@@ -10,10 +10,12 @@
   display: inline-block;
   margin: 20px;
 }
-
-.Blog a {
+.link {
   text-decoration: none;
   color: #000;
+  display: inline-block;
+  margin: 20px;
+  font-weight: bold;
 }
 
 .Blog a:hover,
