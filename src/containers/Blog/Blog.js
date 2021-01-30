@@ -4,7 +4,7 @@ import {Route, NavLink, Switch} from 'react-router-dom';
 
 import Posts from '../Posts/Posts';
 import NewPost from '../NewPost/NewPost';
-import FullPost from '../FullPost/FullPost';
+// import FullPost from '../FullPost/FullPost';
 import './Blog.css';
 
 class Blog extends Component {
@@ -17,7 +17,7 @@ class Blog extends Component {
                         <ul>
                             {/* <li><a href="/">Home</a></li>
                             <li><a href="/new-post">New Post</a></li> */}
-                            <NavLink to="/" exact className='link'>Home</NavLink>
+                            <NavLink to="/posts" exact className='link'>Posts</NavLink>
                             <NavLink className='link'
                                 activeClassName="my-active"  // щоб змінити дефолтне значення 'active'
                                 activeStyle={{              // стилі, що будуть додані після кліка. Щоб не використовувати css files
@@ -34,10 +34,9 @@ class Blog extends Component {
                 </header>
                 {/* <Route path="/"  render={() => <h1>HOME</h1>} /> */}
                 {/* <Route path="/" exact render={() => <Posts />} /> */}
-                <Route path="/" exact component={Posts} />
                 <Switch>
                     <Route path="/new-post" exact component={NewPost} />
-                    <Route path="/:id" exact component={FullPost} />
+                    <Route path="/posts" component={Posts} />
                 </Switch>
             </div>
         );
