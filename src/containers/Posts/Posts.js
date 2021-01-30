@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Posts.css';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 import Post from '../../components/Post/Post';
 
@@ -33,19 +33,23 @@ class Posts extends Component {
     }
 
     postSelectedHandler = (id) => {
-        this.setState({selectedPostId: id});
+        // this.setState({selectedPostId: id});
+        // this.props.history.push('/' + id);
+        this.props.history.push({pathname: '/' + id}); // Можна використовувати замість <Link>
     }
 
     render() {
         let posts = this.state.posts.map(post => {
             return (
-                <Link to={"/" + post.id} key={post.id}>
-                    <Post
-                        title={post.title}
-                        author={post.author}
-                        clicked={() => this.postSelectedHandler(post.id)}
-                    />
-                </Link>)
+                // <Link to={"/" + post.id} key={post.id}>
+                <Post
+                    key={post.id}
+                    title={post.title}
+                    author={post.author}
+                    clicked={() => this.postSelectedHandler(post.id)}
+                />
+                // </Link>
+            )
         });
         if (this.state.errors) {
             posts =
