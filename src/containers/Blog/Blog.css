@@ -10,7 +10,7 @@
   display: inline-block;
   margin: 20px;
 }
-.link {
+.Blog .link {
   text-decoration: none;
   color: #000;
   display: inline-block;
@@ -18,7 +18,8 @@
   font-weight: bold;
 }
 
-.Blog a:hover,
-.Blog a:active {
+.Blog .link:hover,
+.Blog .link:active,
+.Blog .link.active {
   color: #fa923f;
 }
