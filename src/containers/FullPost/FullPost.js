@@ -9,11 +9,18 @@ class FullPost extends Component {
     }
 
     componentDidMount() {
+        this.loadData()
+    }
+
+    componentDidUpdate() {
+        this.loadData()
+    }
+
+    loadData() {
         // console.log(this.props);
-        const postId = this.props.match.params.id;
-        if (postId) {
-            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== postId)) {        // без перевірки отримаємо loop, компонент оновився, запрос, оновився...
-                axios.get('https://jsonplaceholder.typicode.com/posts/' + postId)
+        if (this.props.match.params.id) {
+            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id)) {        // без перевірки отримаємо loop, компонент оновився, запрос, оновився...
+                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.match.params.id)
                     .then(response => {
                         // console.log(response);
                         this.setState({loadedPost: response.data})
@@ -32,7 +39,7 @@ class FullPost extends Component {
     render() {
 
         let post = <p style={{textAlign: 'center', color: 'red'}}><strong>Please select a Post!</strong></p>;
-        if (this.props.id) {
+        if (this.props.match.params.id) {
             post = <p style={{textAlign: 'center', color: 'red'}}><strong>Loading...!</strong></p>
         }
         if (this.state.loadedPost) {
