@@ -8,10 +8,12 @@ class FullPost extends Component {
         loadedPost: null,
     }
 
-    componentDidUpdate() {
-        if (this.props.id) {
-            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {        // без перевірки отримаємо loop, компонент оновився, запрос, оновився...
-                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+    componentDidMount() {
+        // console.log(this.props);
+        const postId = this.props.match.params.id;
+        if (postId) {
+            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== postId)) {        // без перевірки отримаємо loop, компонент оновився, запрос, оновився...
+                axios.get('https://jsonplaceholder.typicode.com/posts/' + postId)
                     .then(response => {
                         // console.log(response);
                         this.setState({loadedPost: response.data})
@@ -21,7 +23,7 @@ class FullPost extends Component {
     }
 
     deletePostHandler = () => {
-        axios.delete('/posts/' + this.props.id)
+        axios.delete('/posts/' + this.props.match.params.id)
             .then(response => {
                 console.log(response);
             });
