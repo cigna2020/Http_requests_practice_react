@@ -7,6 +7,8 @@ class App extends Component {
     render() {
         return (
             <BrowserRouter>
+                {/* basename використовується коли стартова має бути ...com/some-adr */}
+                {/* <BrowserRouter basename="/my-app"> */}
                 <div className="App">
                     <Blog />
                 </div>
