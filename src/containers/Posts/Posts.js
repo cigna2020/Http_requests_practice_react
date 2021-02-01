@@ -26,6 +26,7 @@ class Posts extends Component {
 
                 this.setState({posts: updatePosts});
                 // console.log(this.state.posts);
+                // console.log(this.props);
             })
             .catch(error => {
                 console.log("ERROR:" + error)

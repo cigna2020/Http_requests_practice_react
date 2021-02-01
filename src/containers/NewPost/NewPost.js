@@ -21,7 +21,9 @@ class NewPost extends Component {
         axios.post('/posts', postData)
             .then(response => {
                 console.log(response);
-                this.setState({submitted: true});
+                this.props.history.push('/posts'); // можна використати кнопку "назад", щоб повернутися до NewPost
+                // this.props.history.replace('/posts'); // кнопка "назад" не працює
+                // this.setState({submitted: true}); // кнопка "назад" не працює
             })
     };
 
