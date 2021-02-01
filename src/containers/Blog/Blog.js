@@ -9,6 +9,10 @@ import './Blog.css';
 
 class Blog extends Component {
 
+    state = {
+        auth: false
+    }
+
     render() {
         return (
             <div className="Blog">
@@ -35,9 +39,13 @@ class Blog extends Component {
                 {/* <Route path="/"  render={() => <h1>HOME</h1>} /> */}
                 {/* <Route path="/" exact render={() => <Posts />} /> */}
                 <Switch>
-                    <Route path="/new-post" exact component={NewPost} />
+                    {/* якщо є умовний оператор має бути блок Redirect */}
+                    {this.state.auth ? <Route path="/new-post" exact component={NewPost} /> : null}
                     <Route path="/posts" component={Posts} />
-                    <Redirect from="/" to="/posts" />
+                    {/* В тому числі "ловить" всі невідомі запити (path) якщо from= просто "/" */}
+                    {/* <Redirect from="/" to="/posts" /> */}
+                    {/* "ловити"  невідомі запити (path) можна й так: */}
+                    <Route render={() => <h1>Page not found!</h1>} />
                 </Switch>
             </div>
         );
