@@ -3,14 +3,19 @@ import {Route, NavLink, Switch, Redirect} from 'react-router-dom';
 
 
 import Posts from '../Posts/Posts';
-import NewPost from '../NewPost/NewPost';
 // import FullPost from '../FullPost/FullPost';
 import './Blog.css';
+// import NewPost from '../NewPost/NewPost';
+import asyncComponent from '../../hoc/asyncComponent';
+
+const AsyncNewPost = asyncComponent(() => {
+    return import('../NewPost/NewPost');
+});
 
 class Blog extends Component {
 
     state = {
-        auth: false
+        auth: true
     }
 
     render() {
@@ -40,7 +45,9 @@ class Blog extends Component {
                 {/* <Route path="/" exact render={() => <Posts />} /> */}
                 <Switch>
                     {/* якщо є умовний оператор має бути блок Redirect */}
-                    {this.state.auth ? <Route path="/new-post" exact component={NewPost} /> : null}
+                    {/* {this.state.auth ? <Route path="/new-post" exact component={NewPost} /> : null} */}
+                    {/* Lazy loading */}
+                    {this.state.auth ? <Route path="/new-post" exact component={AsyncNewPost} /> : null}
                     <Route path="/posts" component={Posts} />
                     {/* В тому числі "ловить" всі невідомі запити (path) якщо from= просто "/" */}
                     {/* <Redirect from="/" to="/posts" /> */}
